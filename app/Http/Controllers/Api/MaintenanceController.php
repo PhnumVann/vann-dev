@@ -17,10 +17,10 @@ class MaintenanceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'car_id' => 'integer|exists:cars,id',
-            'type' => 'integer|max:10',
-            'description' => 'string|max:255',
-            'cost' => 'integer|min:10',
+            'car_id' => 'required|integer|exists:cars,id',
+            'type' => 'required|integer|max:10',
+            'description' => 'required|string|max:255',
+            'cost' => 'required|integer|min:10',
             'maintenance_date' => 'date',
         ]);
 
@@ -30,10 +30,10 @@ class MaintenanceController extends Controller
     public function update(Request $request, Maintenance $maintenance)
     {
         $request->validate([
-            'car_id' => 'integer|exists:cars,id',
-            'type' => 'integer|max:10',
-            'description' => 'string|max:255',
-            'cost' => 'integer|max:10',
+            'car_id' => 'required|integer|exists:cars,id',
+            'type' => 'required|integer|max:10',
+            'description' => 'required|string|max:255',
+            'cost' => 'required|integer|max:10',
             'maintenance_date' => 'date',
         ]);
 

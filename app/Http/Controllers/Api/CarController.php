@@ -32,11 +32,11 @@ class CarController extends Controller
 
     {
         $request->validate([
-            'make' => 'string|max:255',
-            'model' => 'string|max:255',
-            'year' => 'integer',
-            'daily_rate' => 'numeric',
-            'fuel_type' => 'string|max:255',
+            'make' => 'required|string|max:255',
+            'model' => 'required|string|max:255',
+            'year' => 'required|integer',
+            'daily_rate' => 'required|numeric',
+            'fuel_type' => 'required|string|max:255',
             'is_available' => 'boolean',
         ]);
 

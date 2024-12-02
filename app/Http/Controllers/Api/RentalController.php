@@ -36,13 +36,13 @@ class RentalController extends Controller
     public function update(Request $request, Rental $rental)
     {
         $request->validate([
-            'car_id' => 'integer|exists:cars,id',
-            'customer_id' => 'integer|exists:customers,id',
+            'car_id' => 'required|integer|exists:cars,id',
+            'customer_id' => 'required|integer|exists:customers,id',
             'start_date' => 'date',
             'end_date' => 'date|after:start_date',
-            'rental_rate' => 'numeric',
-            'insurance_charge' => 'numeric',
-            'fuel_charge' => 'numeric',
+            'rental_rate' => 'required|numeric',
+            'insurance_charge' => 'required|numeric',
+            'fuel_charge' => 'required|numeric',
         ]);
 
         $rental->update($request->all());
