@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\RentalStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,13 +14,16 @@ return new class extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id()->primary();
-            $table->foreignId('car_id')->constrained('cars')->onDelete('cascade');
-            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
+            $table->foreignId('car_id')->constrained('cars');
+            $table->foreignId('customer_id')->constrained('customers');
             $table->date('start_date');
             $table->date('end_date');
-            $table->decimal('rental_rate', 10);
-            $table->decimal('insurance_charge', 10);
-            $table->decimal('fuel_charge', 10);
+            $table->decimal('rental_rate', 10, 2);
+            $table->decimal('insurance_charge', 10, 2);
+            $table->decimal('fuel_charge', 10, 2);
+            $table->decimal('total_charge', 10, 2);
+            $table->string('status')->default(RentalStatus::pending->value)->nullable();
+            $table->string('payment_status')->default(RentalStatus::unpaid->value)->nullable();
             $table->timestamps();
         });
     }
