@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\RentalStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Rental;
 use Illuminate\Http\Request;
@@ -13,7 +14,6 @@ class RentalController extends Controller
         return response()->json(Rental::all());
 
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -27,6 +27,9 @@ class RentalController extends Controller
             'rental_rate' => 'required|numeric',
             'insurance_charge' => 'required|numeric',
             'fuel_charge' => 'required|numeric',
+            'total_charge' => 'required|numeric',
+            'status' => RentalStatus::pending->value,
+            'payment_status' => RentalStatus::unpaid->value,
         ]);
 
         $rental = Rental::create($request->all());
@@ -43,15 +46,16 @@ class RentalController extends Controller
             'rental_rate' => 'required|numeric',
             'insurance_charge' => 'required|numeric',
             'fuel_charge' => 'required|numeric',
+            'total_charge' => 'required|numeric',
+            'status' => RentalStatus::pending->value,
+            'payment_status' => RentalStatus::unpaid->value,
+
         ]);
 
         $rental->update($request->all());
         return response()->json($rental,202);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Rental $rental)
     {
         $rental->delete();

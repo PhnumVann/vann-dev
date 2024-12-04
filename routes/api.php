@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\RentalStatus;
+use App\Enums\SystemPermission;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CarController;
 use App\Http\Controllers\Api\CustomerController;
@@ -29,6 +31,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('maintenances', MaintenanceController::class);
 
+//    Route::get('/cars', [CarController::class, 'index'])->middleware('permissions:'.SystemPermission::viewCar->value);
+//    Route::post('/cars', [CarController::class, 'store'])->middleware('permissions:'.SystemPermission::createCar->value);
+//    Route::put('/cars/{id}', [CarController::class, 'update'])->middleware('permissions:'.SystemPermission::updateCar->value);
+//    Route::delete('/cars', [CarController::class, 'destroy'])->middleware('permissions:'.SystemPermission::deleteCar->value);
+
+//    Route::get('/rentals', [RentalController::class, 'index'])->middleware('permissions:'.SystemPermission::viewRental->value);
+//    Route::post('/rentals', [RentalController::class, 'store'])->middleware('permissions:'.SystemPermission::createRental->value);
+//    Route::put('/rentals/{id}', [RentalController::class, 'update'])->middleware('permissions:'.SystemPermission::updateRental->value);
+//    Route::delete('/rentals/{id}', [RentalController::class, 'destroy'])->middleware('permissions:'.SystemPermission::deleteRental->value);
 
 });
 
@@ -36,9 +47,3 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-
-
-//Route::get('testing', function (Request $request) {
-//    return 'Testing';
-//});

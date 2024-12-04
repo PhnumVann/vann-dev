@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\SystemPermission;
+
 return [
 
     /*
@@ -65,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'Asia/Bangkok',
 
     /*
     |--------------------------------------------------------------------------
@@ -123,4 +125,33 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'permissions' =>
+    [
+        'car' => [
+            SystemPermission:: createCar->value,
+            SystemPermission:: viewCar->value,
+            SystemPermission:: updateCar->value,
+            SystemPermission:: deleteCar->value,
+        ],
+        'rental' => [
+            SystemPermission:: createRental->value,
+            SystemPermission:: viewRental->value,
+            SystemPermission:: updateRental->value,
+            SystemPermission:: deleteRental->value,
+        ],
+        'customer' => [
+            SystemPermission:: createCustomer->value,
+            SystemPermission:: viewCustomer->value,
+            SystemPermission:: updateCustomer->value,
+            SystemPermission:: deleteCustomer->value,
+        ],
+        'maintenance' => [
+            SystemPermission:: createMaintenance->value,
+            SystemPermission:: viewMaintenance->value,
+            SystemPermission:: updateMaintenance->value,
+            SystemPermission:: deleteMaintenance->value,
+        ]
+    ]
+
 ];
+
